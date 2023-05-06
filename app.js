@@ -98,6 +98,7 @@ function initCanvas(){
             ctx.drawImage(backgroundImage, 10, 10); // background image
             ctx.drawImage(naveImage,this.x,this.y, 100, 90); // we need to make sure spaceship is at the same location as the bullets
 
+            
             for(var i=0; i < this.misiles.length; i++){
                 var m = this.misiles[i];
                 ctx.fillRect(m.x, m.y-=5, m.w, m.h); // bullet direction
@@ -111,7 +112,7 @@ function initCanvas(){
                 clearInterval(animateInterval); // Stop the game animation loop
                 ctx.fillStyle = 'yellow';
                 ctx.font = this.gameStatus.font;
-                ctx.fillText('You win!', cW * .5 - 80, 50);
+                ctx.fillText('You have won!', cW * .5 - 80, 50);
             }
         }
         // Detectar impacto de bullet (bala)
@@ -125,7 +126,7 @@ function initCanvas(){
                    m.y <= e.y+e.h){
                     this.misiles.splice(this.misiles[mi],1); // Remove the missile
                     enemies.splice(i, 1); // Remove the enemy that the missile hit
-                    document.querySelector('.barra').innerHTML = "Destroyed "+ e.id+ " ";
+                    document.querySelector('.barra').innerHTML = "You're  destroyed  by  " + e.id+ " ";
                 }
             }
         }
@@ -134,7 +135,7 @@ function initCanvas(){
             // If location of ship is greater than 550 then we know it passed lower level
             if(enemy.y > 550){
                 this.gameStatus.over = true;
-                this.gameStatus.message = 'Enemy(s) have passed!';
+                this.gameStatus.message = '¡Enemy(s) have passed!';
             }
             // Esto detecta un choque de la nave con enemigos
             //console.log(this);
@@ -148,7 +149,7 @@ function initCanvas(){
             if ((enemy.y < this.y + 25 && enemy.y > this.y - 25) &&
                 (enemy.x < this.x + 45 && enemy.x > this.x - 45)) { // Checking if enemy is on the left or right of spaceship
                     this.gameStatus.over = true;
-                    this.gameStatus.message = 'You Died!'
+                    this.gameStatus.message = 'GAME OVER'
                 }
 
             if(this.gameStatus.over === true){  
@@ -174,7 +175,7 @@ function initCanvas(){
     var fire_btn  = document.getElementById('fire_btn'); 
 
    document.addEventListener('keydown', function(event) {
-        if(event.key == 37) // left arrow
+        if(event.keyCode == 37) // left arrow
         {
          launcher.direccion = 'left';  
             if(launcher.x < cW*.2-130){
@@ -185,7 +186,7 @@ function initCanvas(){
     });
 
     document.addEventListener('keyup', function(event) {
-        if(event.key == 37)
+        if(event.keyCode == 37)
         {
          launcher.x+=0;
          launcher.direccion = '';
@@ -193,7 +194,7 @@ function initCanvas(){
     }); 
 
     document.addEventListener('keydown', function(event) {
-        if(event.key == 39) // right arrow
+        if(event.keyCode == 39) // right arrow
         {
          launcher.direccion = 'right';
          if(launcher.x > cW-110){
@@ -205,7 +206,7 @@ function initCanvas(){
     });
 
     document.addEventListener('keyup', function(event) {
-        if(event.key == 39) // right arrow
+        if(event.keyCode == 39) // right arrow
         {
          launcher.x-=0;   
          launcher.direccion = '';
@@ -213,7 +214,7 @@ function initCanvas(){
     }); 
 
     document.addEventListener('keydown', function(event){
-         if(event.key == 38) // up arrow
+         if(event.keyCode == 38) // up arrow
          {
            launcher.direccion = 'upArrow';  
            if(launcher.y < cH*.2-80){
@@ -223,8 +224,12 @@ function initCanvas(){
          }
     });
 
+
+    //Control de flechas//
+    
+    
     document.addEventListener('keyup', function(event){
-         if(event.key == 38) // up arrow
+         if(event.keyCode == 38) // flecha de arriba
          {
            launcher.y -= 0;
            launcher.direccion = '';
@@ -232,7 +237,7 @@ function initCanvas(){
     });
 
     document.addEventListener('keydown', function(event){
-         if(event.key == 40) // down arrow
+         if(event.keyCode == 40) // flecha de abajo
          {
            launcher.direccion = 'downArrow';  
           if(launcher.y > cH - 110){
@@ -242,7 +247,7 @@ function initCanvas(){
          }
     });
     document.addEventListener('keyup', function(event){
-         if(event.key == 40) // down arrow
+         if(event.keyCode == 40) // flecha de abajo
          {
            launcher.y += 0;
            launcher.direccion = '';
@@ -250,7 +255,7 @@ function initCanvas(){
     });
 
     document.addEventListener('keydown', function(event){
-         if(event.key == 80) // restart game
+         if(event.keyCode == 80) // EL juego se restaura con la letra P
          {
           location.reload();
          }
@@ -278,7 +283,7 @@ function initCanvas(){
     });
     // This fires when clicking on space button from keyboard
     document.addEventListener('keydown', function(event) {
-        if(event.key == 32) {
+        if(event.keyCode == 32) {
            launcher.misiles.push({x: launcher.x + launcher.w*.5, y: launcher.y, w: 3,h: 10});
         }
     });
