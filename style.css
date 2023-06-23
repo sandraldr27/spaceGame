@@ -1,41 +1,45 @@
-body { margin:10px; background-image: url("./img/wall.jpg"); }
-
-.container {
-    width:800px;
-    margin:0 auto;
-}
-
-.barra {
-    background-color:#000000;
-    color: rgb(252, 248, 6);
-    font-size: 20px;
-    height: 30px; width: 700px;    
-}
-
-#my_canvas{ 
-    background:#05011e; 
-    border:#000 1px solid; 
-}
-
-.align-boton {
+body {
+    margin: 10px;
+    background-image: url("./img/wall.jpg");
+  }
+  
+  .container {
+    width: 800px;
     margin: 0 auto;
+    text-align: center; /* Agrega esta línea */
+  }
+  
+  .button-container {
     display: flex;
     justify-content: center;
-    position: absolute;
-    left: 23%;
-}
-
-.boton{
-    color:rgb(76, 244, 101);
+    margin-top: 20px;
+  }
+  
+  .barra {
+    background-color: #000000;
+    color: rgb(252, 248, 6);
+    font-size: 20px;
+    height: 30px;
+    width: 700px;
+    margin: 0 auto; /* Agrega esta línea */
+  }
+  
+  #my_canvas {
+    background: #05011e;
+    border: #000 1px solid;
+  }
+  
+  .boton {
+    color: rgb(76, 244, 101);
     font-size: 35px;
     background-color: #000000;
     cursor: pointer;
     border-radius: 8px;
-    border:2px solid blue;
-}
-
-.boton:hover{
+    border: 2px solid blue;
+  }
+  
+  .boton:hover {
     background-color: white;
     color: #000000;
-}
-
+  }
+  
